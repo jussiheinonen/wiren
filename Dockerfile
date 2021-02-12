@@ -11,8 +11,9 @@ FROM node:alpine
 # BUILD: sudo docker build --no-cache --pull -t wiren:alpine ./$(dirname $0)
 # USAGE: sudo docker run -v $(pwd)/wiren:/usr/app/wiren --net=host -it wiren:alpine
 # RUNNING WEB SERVER: 
-#   1. export USERS_TABLE="users" && export IS_OFFLINE="true"
-#   2. cd wiren && sls wsgi serve # Then open http://localhost:5000/  in your web browser
+#   1. cd wiren 
+#   2. ./entrypoint.sh
+#   3. Open http://localhost:5000/  in your web browser
 
 WORKDIR /usr/app
 
@@ -21,7 +22,7 @@ RUN apk update && apk add python3 bash net-tools openjdk11-jre && \
     ln -s /usr/bin/pip3 /usr/bin/pip && \
     pip3 install --upgrade pip && \
     pip3 install flask boto3 awscli && \
-    npm install -g serverless && \
+    npm install -g npm serverless && \
     npm install --save-dev serverless-wsgi serverless-python-requirements serverless-dynamodb-local
 
 ENTRYPOINT ["/bin/bash"] 
