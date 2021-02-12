@@ -7,6 +7,7 @@
 export USERS_TABLE="users"
 export IS_OFFLINE="true"
 
+cd ./$(dirname $0)
 sls dynamodb start &
 sleep 3
 sls wsgi serve
