@@ -20,9 +20,9 @@ else:
 
 @app.route("/")
 def hello():
-    return jsonify(os.environ)
+    #return "You are in the root. Try /greeting resource."
+    return "NODE_VERSION: " + os.environ['NODE_VERSION']
 
 @app.route("/greeting")
 def greeting():
-
     return "Hi there!"
