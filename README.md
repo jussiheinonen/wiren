@@ -1,10 +1,17 @@
 # Wiren
-Local development environment with Python3.8, Node and Serverless runtimes
+Local development environment with Python3.8, Nodejs and Serverless runtimes
+
+# Benefits
+
+ * Fast feedback loop speeds up development process 
+ * Developing in secure sandbox environment
+ * Avoid cluttering the main operating environment with tools and modules that are only used for the app
+ * Later, use local development environment for production workloads on public cloud infrastructure (ECS, Kubernetes)
 
 # Usage
 See [Dockerfile](https://github.com/jussiheinonen/wiren/blob/master/Dockerfile) for details
 
-# Maintainer 
+# Maintainer
 Jussi Heinonen
 
 [LinkedIn](https://linkedin.com/in/jussiheinonen/)  [Twitter](https://twitter.com/jussihei/)
