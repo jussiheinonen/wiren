@@ -49,6 +49,43 @@ $ curl -H "Content-Type: application/json" -X GET http://localhost:5000/users/ju
 }
 ```
 
+### Command line actions
+
+#### List tables
+```
+$ aws dynamodb list-tables --endpoint-url http://localhost:8000
+{
+    "TableNames": [
+        "users-table-dev"
+    ]
+}
+```
+
+#### Query user 
+```
+$ aws dynamodb query \
+    --table-name users-table-dev \
+    --key-condition-expression "userId = :name" \
+    --expression-attribute-values  '{":name":{"S":"jussihei"}}' \
+    --endpoint-url http://localhost:8000
+{
+    "Items": [
+        {
+            "name": {
+                "S": "Jussi Heinonen"
+            },
+            "userId": {
+                "S": "jussihei"
+            }
+        }
+    ],
+    "Count": 1,
+    "ScannedCount": 1,
+    "ConsumedCapacity": null
+}
+
+```
+
 # Maintainer
 Jussi Heinonen
 
