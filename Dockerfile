@@ -12,6 +12,11 @@ FROM node:alpine
 # BUILD FROM SCRATCH: sudo docker build --no-cache --pull -t wiren:alpine ./$(dirname $0)
 # USAGE: sudo docker run -v $(pwd)/wiren:/usr/app/wiren --net=host -it wiren:alpine
 #        Open http://localhost:5000/ in the web browser
+#
+# TODO: sls dynamodb crashes. 
+#       Workaround based on https://github.com/localstack/localstack/issues/2619
+#       Download https://github.com/whummer/dynamodb-local/raw/master/etc/DynamoDBLocal.zip and extract in wiren/.dynamodb
+#       Then run wiren/entrypoint.sh and alles gut supposed to
 
 WORKDIR /usr/app/
 
