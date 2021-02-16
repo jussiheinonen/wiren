@@ -9,7 +9,44 @@ Local development environment with Python3.8, Nodejs and Serverless runtimes
  * Later, use local development environment for production workloads on public cloud infrastructure (ECS, Kubernetes)
 
 # Usage
-See [Dockerfile](https://github.com/jussiheinonen/wiren/blob/master/Dockerfile) for details
+
+### Building docker image
+`sudo docker build -t wiren:alpine ./$(dirname $0)`
+See [Dockerfile](https://github.com/jussiheinonen/wiren/blob/master/Dockerfile) for more build options
+
+### Starting docker container
+`sudo docker run -v $(pwd)/wiren:/usr/app/wiren --net=host -it wiren:alpine`
+
+ Console will show the following events when successfully started
+ ```
+ Dynamodb Local Started, Visit: http://localhost:8000/shell
+ Serverless: Using Python specified in "runtime": python3.8
+ * Running on http://localhost:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+Serverless: DynamoDB - created table users-table-dev
+ * Debugger is active!
+ * Debugger PIN: 549-767-379
+ ```
+
+### End-to-end testing
+You can test the functionality by creating a user and retrieving user details using curl command  line utility
+
+#### Creating user
+```
+$ curl -H "Content-Type: application/json" -X POST http://localhost:5000/users -d '{"userId": "jussihei", "name": "Jussi Heinonen"}'
+{
+  "name": "Jussi Heinonen", 
+  "userId": "jussihei"
+}
+```
+#### Get user details
+```
+$ curl -H "Content-Type: application/json" -X GET http://localhost:5000/users/jussihei
+{
+  "name": "Jussi Heinonen", 
+  "userId": "jussihei"
+}
+```
 
 # Maintainer
 Jussi Heinonen
