@@ -4,7 +4,7 @@
 #
 # USAGE: ./entrypoint.sh 
 
-export USERS_TABLE="users"
+export USERS_TABLE="users-table-dev"
 export IS_OFFLINE="true"
 
 cd ./$(dirname $0)
