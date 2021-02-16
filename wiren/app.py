@@ -46,3 +46,23 @@ def get_user(user_id):
         'name': item.get('name').get('S')
 
     })
+
+@app.route("/users", methods=["POST"])
+def create_user():
+    user_id = request.json.get('userId')
+    name = request.json.get('name')
+    if not user_id or not name:
+        return jsonify({'error': 'Please provide userId and name'}), 400
+
+    resp = client.put_item(
+        TableName=USERS_TABLE,
+        Item={
+            'userId': {'S': user_id },
+            'name': {'S': name }
+        }
+    )
+
+    return jsonify({
+        'userId': user_id,
+        'name': name
+    })
