@@ -14,6 +14,7 @@ if IS_OFFLINE:
         'dynamodb',
         region_name = 'localhost',
         endpoint_url = 'http://localhost:8000',
+        #endpoint_url = 'http://localhost:4566',
         aws_access_key_id = 'AKIAIOSFODNN7EXAMPLE',
         aws_secret_access_key = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
     )
