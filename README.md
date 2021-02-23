@@ -53,6 +53,16 @@ $ curl -H "Content-Type: application/json" -X GET http://localhost:5000/users/ju
 
 ### Command line actions
 
+#### Create table
+```
+aws dynamodb create-table \
+    --table-name users-table-dev \
+    --attribute-definitions AttributeName=userId,AttributeType=S \
+    --key-schema AttributeName=userId,KeyType=HASH \
+    --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+    --endpoint-url http://localhost:8000
+```
+
 #### List tables
 ```
 $ aws dynamodb list-tables --endpoint-url http://localhost:8000
