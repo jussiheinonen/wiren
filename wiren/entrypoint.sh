@@ -48,9 +48,11 @@ test -z ${ARGS[--start_wsgi]} && ARGS[--start_wsgi]="true"
 test -z ${ARGS[--wsgi_dir]} && ARGS[--wsgi_dir]="./$(dirname $0)"
 printCliArgs
 
-cd ./$(dirname $0)
-sls dynamodb start &
-sleep 3
+if [[ "${ARGS[--start_dynamoddb]}" == "true" ]]; then
+  cd ./$(dirname $0)
+  sls dynamodb start &
+  sleep 3
+fi
 
 if [[ "${ARGS[--start_wsgi]}" == "true" ]]; then
     cd ${ARGS[--wsgi_dir]}
