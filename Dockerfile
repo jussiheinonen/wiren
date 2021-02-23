@@ -1,6 +1,6 @@
 FROM node:alpine
 
-# Development environment for Python and Node development
+# Development environment for Python and Node.js development
 #
 # Based on https://www.serverless.com/blog/flask-python-rest-api-serverless-lambda-dynamodb
 # 
@@ -24,7 +24,7 @@ RUN apk update && apk add python3 bash net-tools openjdk11-jre curl file exiftoo
     ln -s /usr/bin/python3 /usr/bin/python && \
     ln -s /usr/bin/pip3 /usr/bin/pip && \
     pip3 install --upgrade pip && \
-    pip3 install flask boto3 awscli && \
+    pip3 install flask boto3 awscli exif && \
     npm install -g npm serverless && \
     npm install --save-dev serverless-wsgi serverless-python-requirements serverless-dynamodb-local
 
