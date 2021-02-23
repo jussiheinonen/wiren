@@ -1,5 +1,5 @@
 FROM node:alpine
-LABEL maintainer="heinone.jussi@gmail.com"
+LABEL maintainer="heinonen.jussi@gmail.com"
 
 # Development environment for Python and Node.js development
 #
