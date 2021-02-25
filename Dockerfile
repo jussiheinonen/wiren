@@ -25,7 +25,7 @@ RUN apk update && apk add python3 bash net-tools openjdk11-jre curl file exiftoo
     ln -s /usr/bin/python3 /usr/bin/python && \
     ln -s /usr/bin/pip3 /usr/bin/pip && \
     pip3 install --upgrade pip && \
-    pip3 install flask boto3 awscli exif && \
+    pip3 install flask boto3 awscli exif IPTCInfo3 && \
     npm install -g npm serverless && \
     npm install --save-dev serverless-wsgi serverless-python-requirements serverless-dynamodb-local
 
