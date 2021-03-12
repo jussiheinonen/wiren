@@ -21,11 +21,11 @@ LABEL maintainer="heinonen.jussi@gmail.com"
 
 WORKDIR /usr/app/
 
-RUN apk update && apk add python3 bash net-tools openjdk11-jre curl file exiftool && \
+RUN apk update && apk add python3 bash net-tools openjdk11-jre curl file exiftool jq && \
     ln -s /usr/bin/python3 /usr/bin/python && \
     ln -s /usr/bin/pip3 /usr/bin/pip && \
     pip3 install --upgrade pip && \
-    pip3 install flask boto3 awscli exif IPTCInfo3 && \
+    pip3 install flask boto3 awscli exif IPTCInfo3 exifread && \
     npm install -g npm serverless && \
     npm install --save-dev serverless-wsgi serverless-python-requirements serverless-dynamodb-local
 
