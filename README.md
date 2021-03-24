@@ -19,17 +19,12 @@ See [Dockerfile](https://github.com/jussiheinonen/wiren/blob/master/Dockerfile) 
 
  Console will show the following events when successfully started
  ```
- Dynamodb Local Started, Visit: http://localhost:8000/shell
  Serverless: Using Python specified in "runtime": python3.8
  * Running on http://localhost:5000/ (Press CTRL+C to quit)
  * Restarting with stat
-Serverless: DynamoDB - created table users-table-dev
  * Debugger is active!
  * Debugger PIN: 549-767-379
  ```
-**NOTE**
-
-If not seeing the line `Serverless: DynamoDB - created table users-table-dev` reported by DynamoDB at start up, it is likely that it has crashed. See TODO block in [Dockerfile](https://github.com/jussiheinonen/wiren/blob/master/Dockerfile) for a workaround.
 
 ### End-to-end testing
 You can test the functionality by creating a user and retrieving user details using curl command  line utility
