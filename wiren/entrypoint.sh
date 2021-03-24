@@ -2,9 +2,8 @@
 #
 # Start serverless-dynamodb-local before starting web server 
 #
-# USAGE: ./entrypoint.sh --start_dynamodb=true --start_wsgi=true --wsgi_dir=../core/core
+# USAGE: ./entrypoint.sh --start_wsgi=true --wsgi_dir=../core/core
 
-export USERS_TABLE="users-table-dev"
 export IS_OFFLINE="true"
 
 info() {
@@ -43,16 +42,9 @@ processCliArgs() {
 
 declare -A ARGS
 processCliArgs $*
-test -z ${ARGS[--start_dynamodb]} && ARGS[--start_dynamodb]="true"
 test -z ${ARGS[--start_wsgi]} && ARGS[--start_wsgi]="true"
 test -z ${ARGS[--wsgi_dir]} && ARGS[--wsgi_dir]="./$(dirname $0)"
 printCliArgs
-
-if [[ "${ARGS[--start_dynamoddb]}" == "true" ]]; then
-  cd ./$(dirname $0)
-  sls dynamodb start &
-  sleep 3
-fi
 
 if [[ "${ARGS[--start_wsgi]}" == "true" ]]; then
     cd ${ARGS[--wsgi_dir]}
