@@ -93,6 +93,23 @@ $ aws dynamodb query \
 
 ```
 
+# Serverless Application Model (SAM)
+
+```
+#Step 1 - Download a sample application
+sam init
+
+#Step 2 - Build your application
+cd sam-app
+sam build
+
+#Step 3 - Deploy your application
+sam deploy --guided
+
+#Step 4 - Whack the stack
+aws cloudformation delete-stack --stack-name sam-app --region region
+```
+
 # Maintainer
 Jussi Heinonen
 
