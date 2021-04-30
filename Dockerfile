@@ -18,17 +18,17 @@ LABEL maintainer="heinonen.jussi@gmail.com"
 
 WORKDIR /usr/app/
 
-RUN apk update && apk add python3 bash net-tools curl file exiftool jq && \
-    ln -s /usr/bin/python3 /usr/bin/python && \
-    ln -s /usr/bin/pip3 /usr/bin/pip && \
-    pip3 install --upgrade pip && \
-    pip3 install flask boto3 awscli exif IPTCInfo3 exifread && \
+RUN apk update && apk add python3 py3-pip bash net-tools curl file exiftool jq && \
+    #ln -s /usr/bin/python3 /usr/bin/python && \
+    #ln -s /usr/bin/pip3 /usr/bin/pip && \
+    /usr/bin/pip3 install --upgrade pip && \
+    /usr/bin/pip3 install flask boto3 awscli exif IPTCInfo3 exifread requests && \
     npm install -g npm serverless && \
     npm install --save-dev serverless-wsgi serverless-python-requirements 
 
 # INSTALL AWS SAM RUNTIME
 RUN apk add musl-dev gcc python3-dev git && \
-    pip3 install --upgrade aws-sam-cli
+    /usr/bin/pip3 install --upgrade aws-sam-cli
     
 ENTRYPOINT ["wiren/entrypoint.sh"] 
 
