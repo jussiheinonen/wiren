@@ -10,9 +10,10 @@ LABEL maintainer="heinonen.jussi@gmail.com"
 # Atop install Python 3.8, Node serverless modules and tools
 # 
 #
-# BUILD: sudo docker build -t wiren:alpine ./$(dirname $0)
-# BUILD FROM SCRATCH: sudo docker build --no-cache --pull -t wiren:alpine ./$(dirname $0)
-# USAGE: sudo docker run -v $(pwd)/wiren:/usr/app/wiren --net=host -it wiren:alpine
+# PULL:  docker pull node:alpine
+# BUILD: docker build -t wiren:alpine_20220630 ./$(dirname $0)
+# BUILD FROM SCRATCH:  docker build --no-cache --pull -t wiren:alpine ./$(dirname $0)
+# USAGE: docker run -v $(pwd)/wiren:/usr/app/wiren --net=host -it wiren:alpine
 #        Open http://localhost:5000/ in the web browser
 #
 
