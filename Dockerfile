@@ -1,6 +1,9 @@
-FROM node:alpine
+FROM node:alpine3.15
 LABEL maintainer="heinonen.jussi@gmail.com"
-
+#
+# TODO: Bump to node:alpine latest once Python v3.10 is supported Lambda runtime
+#       Until that fix it to Alpine 3.15 that supports Python 3.9
+#
 # Development environment for Python3 and Node.js
 #
 # SLS runtime based on https://www.serverless.com/blog/flask-python-rest-api-serverless-lambda-dynamodb
@@ -11,7 +14,7 @@ LABEL maintainer="heinonen.jussi@gmail.com"
 # 
 #
 # PULL:  docker pull node:alpine
-# BUILD: docker build -t wiren:alpine_20220630 ./$(dirname $0)
+# BUILD: docker build -t wiren:alpine_3.15 ./$(dirname $0)
 # BUILD FROM SCRATCH:  docker build --no-cache --pull -t wiren:alpine ./$(dirname $0)
 # USAGE: docker run -v $(pwd)/wiren:/usr/app/wiren --net=host -it wiren:alpine
 #        Open http://localhost:5000/ in the web browser
