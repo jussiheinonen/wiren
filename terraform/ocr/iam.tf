@@ -1,6 +1,6 @@
 # Based on https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-upload-image-s3/
 resource "aws_iam_role" "ocr_api_gateway_upload_to_s3_role" {
-  name = "ocr-api-gateway-upload-to-s3-role"
+  name = "${local.common.tags.service_id}-api-gateway-upload-to-s3-role"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
@@ -23,7 +23,7 @@ resource "aws_iam_role" "ocr_api_gateway_upload_to_s3_role" {
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy
 resource "aws_iam_role_policy" "ocr_api_gateway_upload_to_s3_policy" {
-  name = "ocr-api-gateway-upload-to-s3-policy"
+  name = "${local.common.tags.service_id}-api-gateway-upload-to-s3-policy"
   role = aws_iam_role.ocr_api_gateway_upload_to_s3_role.id
 
   # Terraform's "jsonencode" function converts a
