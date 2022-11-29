@@ -1,0 +1,9 @@
+{   
+    "common": {
+        "tags": {
+            "stack_id": "demo",
+            "service_id": "ocr",
+            "region": "eu-west-2"
+           }        
+    }
+}
