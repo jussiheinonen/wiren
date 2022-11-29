@@ -1,3 +1,4 @@
 wiren/.dynamodb/
 wiren/__pycache__/
 wiren/node_modules
+terraform/*/.terraform*
