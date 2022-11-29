@@ -22,7 +22,7 @@ LABEL maintainer="heinonen.jussi@gmail.com"
 
 WORKDIR /usr/app/
 
-RUN apk update && apk add python3 py3-pip bash net-tools curl file exiftool jq && \
+RUN apk update && apk add python3 py3-pip bash net-tools curl file exiftool jq groff && \
     #ln -s /usr/bin/python3 /usr/bin/python && \
     #ln -s /usr/bin/pip3 /usr/bin/pip && \
     /usr/bin/pip3 install --upgrade pip && \
