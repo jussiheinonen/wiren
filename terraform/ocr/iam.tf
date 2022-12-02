@@ -41,3 +41,10 @@ resource "aws_iam_role_policy" "ocr_api_gateway_upload_to_s3_policy" {
     ]
   })
 }
+
+# Attach S3 Access Policy to the API Gateway Role
+# https://github.com/hashicorp/terraform-provider-aws/blob/main/examples/s3-api-gateway-integration/main.tf
+#resource "aws_iam_role_policy_attachment" "ocr_s3_policy_attach" {
+#  role       = aws_iam_role.ocr_api_gateway_upload_to_s3_role.name
+#  policy_arn = aws_iam_role_policy.ocr_api_gateway_upload_to_s3_policy.arn
+#}
