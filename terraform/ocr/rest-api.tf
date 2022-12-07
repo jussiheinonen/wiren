@@ -26,11 +26,12 @@ resource "aws_api_gateway_resource" "ocr_rest_api_resource_object" {
 
 
 resource "aws_api_gateway_method" "ocr_rest_api_method_put" { 
-  rest_api_id   = aws_api_gateway_rest_api.ocr_rest_api.id
-  resource_id   = aws_api_gateway_resource.ocr_rest_api_resource_object.id
-  http_method   = "PUT"
-  authorization = "NONE"
-  request_parameters = {
+  rest_api_id         = aws_api_gateway_rest_api.ocr_rest_api.id
+  resource_id         = aws_api_gateway_resource.ocr_rest_api_resource_object.id
+  http_method         = "PUT"
+  authorization       = "NONE"
+  api_key_required    = false
+  request_parameters  = {
     "method.request.path.folder" = true
     "method.request.path.object" = true
   }
