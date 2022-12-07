@@ -36,15 +36,47 @@ resource "aws_iam_role_policy" "ocr_api_gateway_upload_to_s3_policy" {
           "s3:PutObject",
         ]
         Effect   = "Allow"
-        Resource = "${aws_s3_bucket.ocr_bucket_inbound.arn}"
+        Resource = [
+          aws_s3_bucket.ocr_bucket_inbound.arn,
+          "${aws_s3_bucket.ocr_bucket_inbound.arn}/*"
+        ]
       },
     ]
   })
 }
 
-# Attach S3 Access Policy to the API Gateway Role
-# https://github.com/hashicorp/terraform-provider-aws/blob/main/examples/s3-api-gateway-integration/main.tf
-#resource "aws_iam_role_policy_attachment" "ocr_s3_policy_attach" {
-#  role       = aws_iam_role.ocr_api_gateway_upload_to_s3_role.name
-#  policy_arn = aws_iam_role_policy.ocr_api_gateway_upload_to_s3_policy.arn
-#}
+/*
+resource "aws_iam_user" "demo_user" {
+  name          = "demo-user"
+  path          = "/"
+  force_destroy = true
+  tags          = local.common.tags
+}
+
+resource "aws_iam_access_key" "demo_access_key" {
+  user = aws_iam_user.demo_user.name
+}
+
+resource "aws_iam_user_policy" "ocr_demo_user_upload_to_s3_policy" {
+  name = "${local.common.tags.service_id}-demo-user-upload-to-s3-policy"
+  user = aws_iam_user.demo_user.name
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "s3:PutObject",
+        ]
+        Effect   = "Allow"
+        Resource = [
+          aws_s3_bucket.ocr_bucket_inbound.arn,
+          "${aws_s3_bucket.ocr_bucket_inbound.arn}/*"
+        ]
+      },
+    ]
+  })
+}
+*/
