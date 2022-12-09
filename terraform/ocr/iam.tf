@@ -45,6 +45,64 @@ resource "aws_iam_role_policy" "ocr_api_gateway_upload_to_s3_policy" {
   })
 }
 
+
+resource "aws_iam_role" "ocr_lambda_role" {
+  name = "${local.common.tags.service_id}-lambda-role"
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+      }
+    ]
+  })
+
+  tags = local.common.tags
+}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy
+resource "aws_iam_role_policy" "ocr_lambda_policy" {
+  name = "${local.common.tags.service_id}-lambda-policy"
+  role = aws_iam_role.ocr_lambda_role.id
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+        Effect   = "Allow"
+        Resource = [ "arn:aws:logs:*:*:*" ]
+      },
+      {
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:DeleteObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        aws_s3_bucket.ocr_bucket_inbound.arn,
+        "${aws_s3_bucket.ocr_bucket_inbound.arn}/*"
+      ]
+    }
+    ]
+  })
+}
+
 /*
 resource "aws_iam_user" "demo_user" {
   name          = "demo-user"
