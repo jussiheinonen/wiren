@@ -1,9 +1,13 @@
 {   
     "common": {
         "tags": {
-            "stack_id": "demo",
+            "stack_id": "ocr-demo",
             "service_id": "ocr",
             "region": "eu-west-2"
            }        
+    },
+    "lambda": {
+        "library_path": "lib/app.py",
+        "handler": "lambda_handler"
     }
 }
