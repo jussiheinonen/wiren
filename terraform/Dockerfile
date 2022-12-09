@@ -14,12 +14,13 @@ LABEL maintainer="heinonen.jussi@gmail.com"
 
 WORKDIR /tmp
 
-RUN yum clean all && yum update && \
-    yum install -y yum-utils shadow-utils groff procps && \
-    yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo && \
-    yum -y install terraform unzip && \
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
-    unzip awscliv2.zip && \
+RUN yum clean all 
+#RUN yum update 
+RUN yum install -y yum-utils shadow-utils groff procps python3
+RUN yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+RUN yum -y install terraform unzip
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN    unzip awscliv2.zip && \
     ./aws/install
     
    
