@@ -23,7 +23,7 @@
 
 #### Set the environment
 
-`export TF_VAR_json_path=../environments/default/default.json`
+`export TF_VAR_json_path=../environments/poc/poc.json`
 
 #### Running Terraform
 
