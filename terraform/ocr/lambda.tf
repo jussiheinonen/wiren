@@ -2,7 +2,7 @@ provider "archive" {}
 
 data "archive_file" "ocr_function" {
   type             = "zip"
-  source_file      = "${path.module}/${local.lambda.library_path}"
+  source_file      = "${path.module}/${local.ocr.lambda.library_path}"
   output_file_mode = "0666"
   output_path      = "${path.module}/bin/app.py.zip"
 }
@@ -11,8 +11,8 @@ resource "aws_lambda_function" "ocr_lambda_function" {
   function_name                  = "${local.common.tags.service_id}-lambda-function"
   filename                       = "${path.module}/bin/app.py.zip"
   role                           = aws_iam_role.ocr_lambda_role.arn
-  handler                        = "app.lambda_handler"
-  runtime                        = "python3.8"
+  handler                        = local.ocr.lambda.handler
+  runtime                        = local.ocr.lambda.runtime
   tags                           = local.common.tags
 }
 
