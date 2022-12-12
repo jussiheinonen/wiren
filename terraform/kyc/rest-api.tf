@@ -41,7 +41,7 @@ resource "aws_api_gateway_integration" "kyc_rest_api_integration" {
   http_method               = aws_api_gateway_method.kyc_rest_api_method_get.http_method
   integration_http_method   = "GET" 
   type                      = "AWS"
-  uri                       = "arn:aws:apigateway:${local.common.tags.region}:s3:path/${local.common.tags.stack_id}-kyc-bucket-outbound/kyc.json"
+  uri                       = "arn:aws:apigateway:${local.common.tags.region}:s3:path/${aws_s3_bucket.kyc_bucket_outbound.bucket}/kyc.json"
   credentials               = aws_iam_role.kyc_api_gateway_get_from_s3_role.arn
   
   request_parameters = {
