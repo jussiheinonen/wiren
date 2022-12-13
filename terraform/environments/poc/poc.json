@@ -14,7 +14,9 @@
         }
     },
     "kyc": {
-        "verification_description": "Any individual who suffices the following KYC requirement is eligible for service",
+        "source_file": "../environments/poc/kyc.json",
+        "source_file_false": false,
+        "verification_description": "Any individual who suffices these KYC requirement is eligible for service",
         "verification": {
             "residence": "UK citizen/residence (Non-UK citizen who stayed in the UK for more than 6 months)",
             "address": "UK postal address including Postcode",
