@@ -24,11 +24,6 @@ resource "aws_api_gateway_method" "kyc_rest_api_method_get" {
   authorization       = "NONE"
   api_key_required    = false
   
-  request_parameters  = {
-    "method.request.path.folder" = true
-    "method.request.path.object" = true
-  }
-  
 }
 
 
@@ -43,12 +38,7 @@ resource "aws_api_gateway_integration" "kyc_rest_api_integration" {
   type                      = "AWS"
   uri                       = "arn:aws:apigateway:${local.common.tags.region}:s3:path/${aws_s3_bucket.kyc_bucket_outbound.bucket}/kyc.json"
   credentials               = aws_iam_role.kyc_api_gateway_get_from_s3_role.arn
-  
-  request_parameters = {
-    "integration.request.path.bucket" = "method.request.path.folder"
-    "integration.request.path.key"    = "method.request.path.object"
-  }
-  
+
 }
 
 resource "aws_api_gateway_method_response" "Status200" {
@@ -62,6 +52,9 @@ resource "aws_api_gateway_method_response" "Status200" {
     "method.response.header.Timestamp"      = true
     "method.response.header.Content-Length" = true
     "method.response.header.Content-Type"   = true
+    "method.response.header.Access-Control-Allow-Headers" = true
+    "method.response.header.Access-Control-Allow-Methods" = true
+    "method.response.header.Access-Control-Allow-Origin" = true
   }
 
   response_models = {
@@ -89,6 +82,9 @@ resource "aws_api_gateway_integration_response" "IntegrationResponse200" {
     "method.response.header.Timestamp"      = "integration.response.header.Date"
     "method.response.header.Content-Length" = "integration.response.header.Content-Length"
     "method.response.header.Content-Type"   = "'application/json'"
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+    "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS'"
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
   }
 
   
