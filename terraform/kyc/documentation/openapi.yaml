@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: Know Your Customer - KYC API
+  description: > 
+    OpenAPI v3 documentation for KYC API
+  contact:
+    name: Jussi Heinonen
+    email: jussi.heinonen@noooner.ltd
+  version: '0.0.1'
+servers:
+  - url: https://hg5wh5x3ld.execute-api.eu-west-2.amazonaws.com
+    description: API Gateway URL that may frequently change when stack is whacked and rebuilt
+paths:
+  /kyc/get:
+    get:
+      summary: KYC 
+      responses:
+        '200':
+          description: JSON document with eligibility criteria
+          content:
+            'text/html':
+              schema:
+                $ref: '#/components/schemas/KycResponse200'
+        '403':
+          description: MissingAuthenticationTokenException
+          content:
+            'text/html':
+              schema:
+                $ref: '#/components/schemas/KycResponse403'
+        '500':
+          description: Internal Server Error
+          content:
+            'text/html':
+              schema:
+                $ref: '#/components/schemas/KycResponse500'
+
+# Descriptions of common components
+components:
+  schemas:
+    KycResponse200:
+      type: object
+      description: JSON document with description and KYC requirements
+      properties:
+        description:
+          type: string
+          description: Description for KYC document
+          example: Any individual who suffices these KYC requirement is eligible for service
+        criteria:
+          type: object
+          description: Block for a set of criteria
+          properties:
+            address: 
+              type: string
+              description: UK postal address including Postcode
+              example: UK postal address including Postcode
+            bills:
+              type: string
+              description: UK utility bill such as gas and/or electicity bill
+              example: UK Utility bill
+            identity:
+              type: string
+              description: Proof of identity
+              example: Government ID and Biometrics (Video of the individual)
+            residence:
+              type: string
+              description: Evidence for UK citizenship or residence
+              example: UK citizen/residence (Non-UK citizen who stayed in the UK for more than 6 months)
+    KycResponse403:
+      type: object
+      description: Error message
+      properties:
+        message:
+          type: string
+          description: Error message with details on what went wrong
+          example: Missing Authentication Token
+    KycResponse500:
+      type: object
+      description: Internal Server Error message
+      properties:
+        message:
+          type: string
+          description: Error message with details on what went wrong
+          example: Internal server error
