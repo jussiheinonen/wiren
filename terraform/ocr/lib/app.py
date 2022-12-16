@@ -117,9 +117,11 @@ def lambda_handler(event, context):
     # Tidy up file system
     if os.path.exists(original_file):
         file_size = os.path.getsize(original_file)
-        print(f'File {key} ({file_size} bytes) successfully received from S3 bucket {bucket}')
+        print(f'File {key} ({file_size} bytes) successfully processed from S3 bucket {bucket}')
         os.remove(original_file)
+        #print('Deleting ' + key + ' in S3 bucket ' + bucket)
+        #S3Del(s3_client, key, bucket)
     else:
-        print(f'OOOPS! Could not get the file {key} from bucket {bucket}')
+        print(f'OOOPS! Could not get file {key} from bucket {bucket}')
 
     return None

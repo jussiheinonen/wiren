@@ -10,6 +10,7 @@ data "archive_file" "ocr_function" {
 resource "aws_lambda_function" "ocr_lambda_function" {
   function_name                  = "${local.common.tags.service_id}-lambda-function"
   filename                       = "${path.module}/bin/app.py.zip"
+  source_code_hash               = filebase64sha256("${path.module}/bin/app.py.zip")
   role                           = aws_iam_role.ocr_lambda_role.arn
   handler                        = local.ocr.lambda.handler
   runtime                        = local.ocr.lambda.runtime
