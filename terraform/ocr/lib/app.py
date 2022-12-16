@@ -17,11 +17,6 @@ if IS_OFFLINE:
 else:
     s3_client = boto3.client('s3')
 
-def md5sum(image_bytes):
-    import hashlib
-    checksum = hashlib.md5(image_bytes).hexdigest()
-    return checksum
-
 def S3Del(s3_client, file_name, bucket_name):
     '''
     :param s3_client: Boto3 client object
