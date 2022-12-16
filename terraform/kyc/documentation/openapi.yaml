@@ -8,7 +8,7 @@ info:
     email: jussi.heinonen@noooner.ltd
   version: '0.0.1'
 servers:
-  - url: https://hg5wh5x3ld.execute-api.eu-west-2.amazonaws.com
+  - url: https://i06bpp9ig8.execute-api.eu-west-2.amazonaws.com
     description: API Gateway URL that may frequently change when stack is whacked and rebuilt
 paths:
   /kyc/get:
