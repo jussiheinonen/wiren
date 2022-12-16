@@ -4,6 +4,7 @@
         "address":"UK postal address including Postcode",
         "bills":"UK Utility bills",
         "identity":"Government ID and Biometrics (Video of the individual)",
-        "residence":"UK citizen/residence (Non-UK citizen who stayed in the UK for more than 6 months)"
+        "residence":"UK citizen/residence (Non-UK citizen who stayed in the UK for more than 6 months)",
+        "criteria5": "Just for demo purposes"
     }
 }
