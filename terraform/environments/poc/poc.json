@@ -23,6 +23,31 @@
             "bills": "UK Utility bills",
             "identity": "Government ID & Biometrics (Video of the individual)"
         }
+    },
+    "kafka": {
+        "project_name": "noooner-593e",
+        "cloud_name": "aws-eu-west-2",
+        "plan": "startup-2",
+        "service_name": "poc-123",
+        "maintenance": {
+            "day_of_week": "monday",
+            "time_of_day": "10:00:00"
+        },
+        "user_config": {
+            "connect_enable": false,
+            "rest_enable": true,
+            "kafka_version": "3.3",
+            "group_max_timeout_ms": 70000,
+            "log_retention_bytes": 1000000000
+        },
+        "topics": {
+            "inbound": {
+                "name": "inbound",
+                "termination_protection": false,
+                "partitions": 3,
+                "replication": 2
+            }
+        }
     }
 
 }
