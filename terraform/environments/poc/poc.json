@@ -47,6 +47,11 @@
                 "partitions": 3,
                 "replication": 2
             }
+        },
+        "users": {
+            "poc-user": {
+                "username": "poc-user"
+            }
         }
     }
 
