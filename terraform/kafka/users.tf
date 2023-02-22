@@ -3,4 +3,7 @@ resource "aiven_kafka_user" "for_each" {
   service_name = local.kafka.service_name
   project      = local.kafka.project_name
   username     = local.kafka.users[each.key].username
+  depends_on = [
+    aiven_kafka.this
+  ]
 }
